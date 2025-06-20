@@ -4,32 +4,31 @@ API Testing Project using Postman
 
 This project centers on testing the RESTful Booker API with Postman, Performing a range of API testing techniques to validate the functionality of essential endpoints and assess the system's reliability. The test suite features detailed test cases for creating, retrieving, updating, and deleting bookings.
 
-## Project Overview
+## Link of the API website
+https://restful-booker.herokuapp.com/
 
-The **RESTful Booker** API is a web service used for booking scenarios, and this project utilizes Postman to automate and validate various endpoints. The tests are designed to verify that the API works as expected, following best practices for both functional and automated testing.
+
+## Overview
+
+The RESTful Booker API is a web service designed for booking scenarios, and this project uses Postman to automate and verify its various endpoints. The tests are structured to ensure the API performs as intended, adhering to best practices in both functional and automated testing.
 
 ## Key Features
 
 - **Automated Test Cases**: Tests for CRUD (Create, Read, Update, Delete) operations.
-- **Postman Collection & Environment**: Pre-configured for easy use and scalability.
-- **Data-Driven Testing**: Implemented tests using different sets of data.
-- **Dynamic Variables**: Utilized Postman’s scripting capabilities to handle dynamic variables like booking IDs.
+- **Postman Collection & Environment**: Configured in advance for ease of use and scalability.
+- **Dynamic Variables**: Utilized Postman’s scripting capabilities to handle dynamic variables.
 - **Assertions**: Verified the status codes, response bodies, and headers using Postman assertions.
-
+- **Dynamic Data**: Using Random data generation.
+  
 ## API Scenarios Tested
 
-- **Create Booking**: Tested POST requests to create new bookings with varying data inputs.
-- **Get Booking**: Validated GET requests to retrieve booking details.
-- **Update Booking**: Tested PUT and PATCH requests for updating booking information.
-- **Delete Booking**: Ensured DELETE requests properly remove booking data.
+- **Ping - HealthCheck**: A simple health check endpoint to confirm whether the API is up and running.
+- **Create Booking**: Verified POST requests to create new bookings with varying data inputs.
+- **Get Booking**: Verified GET requests to retrieve booking details.
+- **Update Booking**: Verified PUT and PATCH requests for updating booking information.
+- **Delete Booking**: Ensured DELETE requests effectively remove booking records as intended.
 - **Authorization**: Tested requests requiring authentication with a valid token.
   
-## Tools Used
-
-- **Postman**: For creating, running, and automating API tests.
-- **JSON**: For sending and receiving data in API requests.
-(optional).
-
 ## How to Run the Tests
 
 1. Clone the repository:
