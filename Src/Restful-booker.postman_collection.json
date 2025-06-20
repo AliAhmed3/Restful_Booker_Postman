@@ -1,0 +1,1086 @@
+{
+	"info": {
+		"_postman_id": "523e405a-27e1-4320-90ec-caa3db7fd3bf",
+		"name": "Restful-booker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26234033",
+		"_collection_link": "https://restful-booker-8652.postman.co/workspace/restful-booker~27aa8b64-4466-48d8-a913-17a801bc5162/collection/26234033-523e405a-27e1-4320-90ec-caa3db7fd3bf?action=share&source=collection_link&creator=26234033"
+	},
+	"item": [
+		{
+			"name": "Booking",
+			"item": [
+				{
+					"name": "Create Booking ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Save the booking ID in an environment variable for Further using.",
+									"",
+									"var newBooking = JSON.parse(responseBody).bookingid;",
+									"pm.environment.set(\"bookingId\", newBooking);",
+									"",
+									"",
+									"// Verify the API response status code, request method, and response format.",
+									"",
+									"",
+									"// Check if the API response status code is 200 OK.",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Verify that the request method is POST.",
+									"pm.test(\"Request method should be POST\", function () {",
+									"    const actualMethod = pm.request.method;",
+									"    pm.expect(actualMethod).to.eql(\"POST\");",
+									"});",
+									"",
+									"// Verify that the response is in JSON format.",
+									"pm.test(\"Response should be in JSON format\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+									"});",
+									"",
+									"// Check that the API response contains all the expected fields.",
+									"",
+									"",
+									"// Check that the response contains the 'firstname' field inside 'booking'.",
+									"pm.test(\"Booking /Create Booking Request --> Check that responce contains firstname\", function () {",
+									"    pm.expect(JSON.parse(responseBody).booking).to.have.property(\"firstname\");",
+									"});",
+									"",
+									"// Check that the response contains the 'lastname' field inside 'booking'.",
+									"pm.test(\"Booking /Create Booking Request --> Check that responce contains lastname\", function () {",
+									"    pm.expect(JSON.parse(responseBody).booking).to.have.property(\"lastname\");",
+									"});",
+									"",
+									"// Check that the response contains the 'totalprice' field inside 'booking'.",
+									"pm.test(\"Booking /Create Booking Request --> Check that responce contains totalprice\", function () {",
+									"    pm.expect(JSON.parse(responseBody).booking).to.have.property(\"totalprice\");",
+									"});",
+									"",
+									"// Check that the response contains the 'depositpaid' field inside 'booking'.",
+									"pm.test(\"Booking /Create Booking Request --> Check that responce contains depositpaid\", function () {",
+									"    pm.expect(JSON.parse(responseBody).booking).to.have.property(\"depositpaid\");",
+									"});",
+									"",
+									"// Check that the response contains the 'checkin' date within 'bookingdates'.",
+									"pm.test(\"Booking /Create Booking Request --> Check that responce contains checkin\", function () {",
+									"    pm.expect(JSON.parse(responseBody).booking.bookingdates).to.have.property(\"checkin\");",
+									"});",
+									"",
+									"// Check that the response contains the 'checkout' date within 'bookingdates'.",
+									"pm.test(\"Booking /Create Booking Request --> Check that responce contains checkout\", function () {",
+									"    pm.expect(JSON.parse(responseBody).booking.bookingdates).to.have.property(\"checkout\");",
+									"});",
+									"",
+									"// Check that the response contains the 'additionalneeds' field inside 'booking'.",
+									"pm.test(\"Booking /Create Booking Request --> Check that responce contains additionalneeds\", function () {",
+									"    pm.expect(JSON.parse(responseBody).booking).to.have.property(\"additionalneeds\");",
+									"});",
+									"",
+									"// Verify specific values in the response using variables from the collection.",
+									"",
+									"",
+									"// Check if the 'firstname' in the response equals the 'First_Name' variable from the collection.",
+									"var fname = pm.collectionVariables.get(\"First_Name\");",
+									"pm.test(\"Booking /Create Booking Request --> Check value of firstname\", function () {",
+									"    pm.expect(JSON.parse(responseBody).booking.firstname).to.be.equal(fname);",
+									"});",
+									"",
+									"// Check if the 'lastname' in the response equals the 'Last_Name' variable from the collection.",
+									"var lname = pm.collectionVariables.get(\"Last_Name\");",
+									"pm.test(\"Booking /Create Booking Request --> Check value of lastname\", function () {",
+									"    pm.expect(JSON.parse(responseBody).booking.lastname).to.be.equal(lname);",
+									"});",
+									"",
+									"// Check if the 'totalprice' in the response equals the 'Total_Price' variable from the collection.",
+									"var TPrice = pm.collectionVariables.get(\"Total_Price\");",
+									"pm.test(\"Booking /Create Booking Request --> Check value of totalprice\", function () {",
+									"    pm.expect(JSON.parse(responseBody).booking.totalprice).to.be.equal(TPrice);",
+									"});",
+									"",
+									"",
+									"// Check that the 'totalprice' in the response body is not null.",
+									"pm.test(\"Booking /Create Booking Request --> Check that totalprice not equal null\", function () {",
+									"    pm.expect(JSON.parse(responseBody).booking.totalprice).to.not.equal(null);",
+									"});",
+									"",
+									"// Check that the 'depositpaid' in the response is not null.",
+									"pm.test(\"Booking /Create Booking Request --> Check that depositpaid not equal null\", function () {",
+									"    pm.expect(JSON.parse(responseBody).booking.depositpaid).to.not.equal(null);",
+									"});",
+									"",
+									"// Check that the 'checkin' date in the response is not null.",
+									"pm.test(\"Booking /Create Booking Request --> Check that checkin not equal null\", function () {",
+									"    pm.expect(JSON.parse(responseBody).booking.bookingdates.checkin).to.not.equal(null);",
+									"});",
+									"",
+									"// Check that the 'checkout' date in the response is not null.",
+									"pm.test(\"Booking /Create Booking Request --> Check that checkout not equal null\", function () {",
+									"    pm.expect(JSON.parse(responseBody).booking.bookingdates.checkout).to.not.equal(null);",
+									"});",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Random First Name Method\r",
+									"function getRandomFirstName() {\r",
+									"  var firstNames = [\"Tevez\", \"Ava\", \"Noah\", \"Sophia\", \"Ethan\", \"Isabella\", \"Mason\", \"Mia\", \"James\", \"sophie\"];\r",
+									"  var randomIndex = Math.floor(Math.random() * firstNames.length);\r",
+									"  return firstNames[randomIndex];\r",
+									"}\r",
+									"pm.collectionVariables.set(\"First_Name\", getRandomFirstName());\r",
+									"\r",
+									"//Random Last Name Method\r",
+									"function getRandomLastName() {\r",
+									"  var lastNames = [\"Mendy\", \"Rooney\", \"Williams\", \"Brown\", \"Messi\", \"Miller\", \"Davis\", \"Muller\", \"Wilson\", \"Mbappe\"];\r",
+									"  var randomIndex = Math.floor(Math.random() * lastNames.length);\r",
+									"  return lastNames[randomIndex];\r",
+									"}\r",
+									"pm.collectionVariables.set(\"Last_Name\", getRandomLastName());\r",
+									"\r",
+									"// Method To create Random Total Price\r",
+									"function getRandomTotalPrice() {\r",
+									"  var min = 100;\r",
+									"  var max = 1000;\r",
+									"  var randomNumber = Math.floor(Math.random() * (max - min + 1) + min);\r",
+									"  return randomNumber;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"Total_Price\", getRandomTotalPrice());\r",
+									"\r",
+									"// Method To Create Random Depositpad\r",
+									"function getRandomDepositpad() {\r",
+									"  return Math.random() < 0.5;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"Depositpad\", getRandomDepositpad());\r",
+									"\r",
+									"// Method To Create Random Check In Dates\r",
+									"function getRandomStartDate(start, end) {\r",
+									"  const startTimestamp = start.valueOf(); // same as getTime()\r",
+									"  const endTimestamp = end.valueOf();\r",
+									"  const randomTimestamp = startTimestamp + Math.random() * (endTimestamp - startTimestamp);\r",
+									"  return new Date(randomTimestamp);\r",
+									"}\r",
+									"pm.collectionVariables.set(\"CheckIn\", getRandomStartDate(new Date(\"1990-01-01\"), new Date(\"1999-12-31\")));\r",
+									"\r",
+									"// Method To Create Random Check Out Dates\r",
+									"function getRandomEndDate(start, end) {\r",
+									"  const startTimestamp = start.valueOf(); // same as getTime()\r",
+									"  const endTimestamp = end.valueOf();\r",
+									"  const randomTimestamp = startTimestamp + Math.random() * (endTimestamp - startTimestamp);\r",
+									"  return new Date(randomTimestamp);\r",
+									"}\r",
+									"pm.collectionVariables.set(\"CheckOut\", getRandomEndDate(new Date(\"2000-01-01\"), new Date(\"2025-6-19\")));\r",
+									"\r",
+									"// Method To Create Random Additional Needs\r",
+									"function getRandomAdditional() {\r",
+									"  var needs = [\"Breakfast\", \"Lunch\", \"Dinner\"];\r",
+									"  var randomIndex = Math.floor(Math.random() * needs.length);\r",
+									"  return needs[randomIndex];\r",
+									"}\r",
+									"pm.collectionVariables.set(\"Additional_Needs\", getRandomAdditional());\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\" : \"{{First_Name}}\",\r\n    \"lastname\" : \"{{Last_Name}}\",\r\n    \"totalprice\" : {{Total_Price}},\r\n    \"depositpaid\" : {{Depositpad}},\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"{{CheckIn}}\",\r\n        \"checkout\" : \"{{CheckOut}}\"\r\n    },\r\n    \"additionalneeds\" : \"{{Additional_Needs}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Base_Url}}/booking",
+							"host": [
+								"{{Base_Url}}"
+							],
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Booking ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify the API response status code, request method, and response format.\r",
+									"\r",
+									"// Check if the API response status code is 200 .\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Verify that the request method is GET.\r",
+									"pm.test(\"Request method should be GET\", function () {\r",
+									"    const actualMethod = pm.request.method;\r",
+									"    pm.expect(actualMethod).to.eql(\"GET\");\r",
+									"});\r",
+									"\r",
+									"// Verify that the response is in JSON format.\r",
+									"pm.test(\" check that Response should be in JSON format\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// Verify that the API response contains all the expected fields.\r",
+									"\r",
+									"\r",
+									"// Check that the response contains the 'firstname' field inside 'booking'.\r",
+									"pm.test(\" Check that response contains firstname\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property(\"firstname\");\r",
+									"});\r",
+									"\r",
+									"// Check that the response contains the 'lastname' field inside 'booking'.\r",
+									"pm.test(\" Check that response contains lastname\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property(\"lastname\");\r",
+									"});\r",
+									"\r",
+									"// Check that the response contains the 'totalprice' field inside 'booking'.\r",
+									"pm.test(\" Check that response contains totalprice\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property(\"totalprice\");\r",
+									"});\r",
+									"\r",
+									"// Check that the response contains the 'depositpaid' field inside 'booking'.\r",
+									"pm.test(\" Check that response contains depositpaid\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property(\"depositpaid\");\r",
+									"});\r",
+									"\r",
+									"// Check that the response contains the 'checkin' date within 'bookingdates'.\r",
+									"pm.test(\" Check that response contains checkin\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody).bookingdates).to.have.property(\"checkin\");\r",
+									"});\r",
+									"\r",
+									"// Check that the response contains the 'checkout' date within 'bookingdates'.\r",
+									"pm.test(\" Check that response contains checkout\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody).bookingdates).to.have.property(\"checkout\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// Check that the response contains the 'additionalneeds' field inside 'booking'.\r",
+									"pm.test(\" Check that response contains additionalneeds\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property(\"additionalneeds\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// Verify that the 'totalprice' in the response is not null.\r",
+									"pm.test(\" Check that totalprice not equal null\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody).totalprice).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"// Verify that the 'depositpaid' in the response is not null.\r",
+									"pm.test(\" Check that depositpaid not equal null\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody).depositpaid).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"// Verify that the 'checkin' date in the response is not null.\r",
+									"pm.test(\" Check that checkin not equal null\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody).bookingdates.checkin).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"// Verify that the 'checkout' date in the response is not null.\r",
+									"pm.test(\" Check that checkout not equal null\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody).bookingdates.checkout).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"// Verify that the 'additional needs' date in the response is not null.\r",
+									"pm.test(\" Check that additional needs not equal null\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody).additionalneeds).to.not.equal(null);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Base_Url}}/booking/{{bookingId}}",
+							"host": [
+								"{{Base_Url}}"
+							],
+							"path": [
+								"booking",
+								"{{bookingId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Booking Ids",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"bookingid\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Check that the request method is GET.\r",
+									"pm.test(\"Request method should be GET\", function () {\r",
+									"    const actualMethod = pm.request.method;\r",
+									"    pm.expect(actualMethod).to.eql(\"GET\");\r",
+									"});\r",
+									"\r",
+									"// Check that the response is in json text format.\r",
+									"pm.test(\" check that Response should be in JSON format\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Base_Url}}/booking",
+							"host": [
+								"{{Base_Url}}"
+							],
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Booking ",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Method To create Random First Name\r",
+									"function getRandomFirstName() {\r",
+									"  var firstNames = [\"kane\", \"Cena\", \"Matt\", \"Eva\", \"Karen\", \"Sarah\", \"Daniel\", \"Emma\", \"Christopher\", \"Murdock\"];\r",
+									"  var randomIndex = Math.floor(Math.random() * firstNames.length);\r",
+									"  return firstNames[randomIndex];\r",
+									"}\r",
+									"pm.collectionVariables.set(\"First_Name\", getRandomFirstName());\r",
+									"\r",
+									"// Method To create Random Last Name\r",
+									"function getRandomLastName() {\r",
+									"  var lastNames = [\"Hardy\", \"Tom\", \"Williams\", \"Leonardo\", \"Jones\", \"Miller\", \"Davis\", \"Garcia\", \"Wilson\", \"Taylor\"];\r",
+									"  var randomIndex = Math.floor(Math.random() * lastNames.length);\r",
+									"  return lastNames[randomIndex];\r",
+									"}\r",
+									"pm.collectionVariables.set(\"Last_Name\", getRandomLastName());\r",
+									"\r",
+									"// Method To create Random Total Price\r",
+									"function getRandomTotalPrice() {\r",
+									"  var min = 100;\r",
+									"  var max = 1000;\r",
+									"  var randomNumber = Math.floor(Math.random() * (max - min + 1) + min);\r",
+									"  return randomNumber;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"Total_Price\", getRandomTotalPrice());\r",
+									"\r",
+									"// Method To Create Random Depositpad\r",
+									"function getRandomDepositpad() {\r",
+									"  return Math.random() < 0.5;\r",
+									"}\r",
+									"pm.collectionVariables.set(\"Depositpad\", getRandomDepositpad());\r",
+									"\r",
+									"// Method To Create Random Check In Dates\r",
+									"function getRandomStartDate(start, end) {\r",
+									"  const startTimestamp = start.valueOf();\r",
+									"  const endTimestamp = end.valueOf();\r",
+									"  const randomTimestamp = startTimestamp + Math.random() * (endTimestamp - startTimestamp);\r",
+									"  return new Date(randomTimestamp);\r",
+									"\r",
+									"}\r",
+									"const randominDate = getRandomStartDate(new Date(\"1990-01-01\"), new Date(\"1999-12-31\"));\r",
+									"const formattedinDate = randominDate.toISOString().slice(0,10);\r",
+									"\r",
+									"pm.collectionVariables.set(\"CheckIn\", formattedinDate);\r",
+									"\r",
+									"\r",
+									"// Method To Create Random Check Out Dates\r",
+									"function getRandomEndDate(start, end) {\r",
+									"  const startTimestamp = start.valueOf(); // same as getTime()\r",
+									"  const endTimestamp = end.valueOf();\r",
+									"  const randomTimestamp = startTimestamp + Math.random() * (endTimestamp - startTimestamp);\r",
+									"  return new Date(randomTimestamp);\r",
+									"}\r",
+									"const randomoutDate = getRandomStartDate(new Date(\"2000-01-01\"), new Date(\"2025-6-19\"));\r",
+									"const formattedoutDate = randomoutDate.toISOString().slice(0,10);\r",
+									"pm.collectionVariables.set(\"CheckOut\", formattedoutDate);\r",
+									"\r",
+									"\r",
+									"// Method To Create Random Additional Needs\r",
+									"function getRandomAdditional() {\r",
+									"  var Additional = [\"Breakfast\", \"Lunch\", \"Dinner\"];\r",
+									"  var randomIndex = Math.floor(Math.random() * Additional.length);\r",
+									"  return Additional[randomIndex];\r",
+									"}\r",
+									"pm.collectionVariables.set(\"Additional_Needs\", getRandomAdditional());\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"// Verify the API response status code, request method, and response format.\r",
+									"\r",
+									"\r",
+									"// Check if the API response status code is 200 OK.\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Check that the request method is POST.\r",
+									"pm.test(\"Request method should be PUT\", function () {\r",
+									"    const actualMethod = pm.request.method;\r",
+									"    pm.expect(actualMethod).to.eql(\"PUT\");\r",
+									"});\r",
+									"\r",
+									"// Check that the response is in JSON format.\r",
+									"pm.test(\"Response should be in JSON format\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// Check that value of any field is correct\r",
+									"\r",
+									"var fname = pm.collectionVariables.get(\"First_Name\");\r",
+									"pm.test(\"Booking /Update Booking Request --> Check value of firstname\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).firstname).to.be.equal(fname)\r",
+									"});\r",
+									"\r",
+									"var lname = pm.collectionVariables.get(\"Last_Name\");\r",
+									"pm.test(\"Booking /Update Booking Request --> Check value of lastname\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).lastname).to.be.equal(lname)\r",
+									"});\r",
+									"\r",
+									"var TPrice = pm.collectionVariables.get(\"Total_Price\");\r",
+									"pm.test(\"Booking /Update Booking Request --> Check value of totalprice\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).totalprice).to.be.equal(TPrice)\r",
+									"});\r",
+									"\r",
+									"var Deposit = pm.collectionVariables.get(\"Depositpad\");\r",
+									"pm.test(\"Booking Folder/Update Booking Request --> Check value of depositpaid\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).depositpaid).to.be.equal(Deposit)\r",
+									"});\r",
+									"\r",
+									"var CIn = pm.collectionVariables.get(\"CheckIn\");\r",
+									"pm.test(\"Booking /Update Booking Request --> Check value of checkin\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).bookingdates.checkin).to.be.equal(CIn)\r",
+									"});\r",
+									"\r",
+									"var COut = pm.collectionVariables.get(\"CheckOut\");\r",
+									"pm.test(\"Booking /Update Booking Request --> Check value of checkout\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).bookingdates.checkout).to.be.equal(COut)\r",
+									"});\r",
+									"\r",
+									"var Additional = pm.collectionVariables.get(\"Additional_Needs\");\r",
+									"pm.test(\"Booking /Update Booking Request --> Check value of additional needs\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).additionalneeds).to.be.equal(Additional)\r",
+									"});\r",
+									"\r",
+									"\r",
+									"//Verify that data type of any fields is correct\r",
+									"\r",
+									"pm.test(\"Booking /Update Booking Request --> Check that data type of firstname\",function(){\r",
+									"    pm.expect(typeof JSON.parse(responseBody).firstname).to.be.equal(\"string\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Booking /Update Booking Request --> Check that data type of lastname\",function(){\r",
+									"    pm.expect(typeof JSON.parse(responseBody).lastname).to.be.equal(\"string\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Booking /Update Booking Request --> Check that data type of totalprice\",function(){\r",
+									"    pm.expect(typeof JSON.parse(responseBody).totalprice).to.be.equal(\"number\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Booking /Update Booking Request --> Check that data type of depositpaid\",function(){\r",
+									"    pm.expect(typeof JSON.parse(responseBody).depositpaid).to.be.equal(\"boolean\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Booking /Update Booking Request --> Check that data type of checkin\",function(){\r",
+									"    pm.expect(typeof JSON.parse(responseBody).bookingdates.checkin).to.be.equal(\"string\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Booking /Update Booking Request --> Check that data type of checkout\",function(){\r",
+									"    pm.expect(typeof JSON.parse(responseBody).bookingdates.checkout).to.be.equal(\"string\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Booking /Update Booking Request --> Check that data type of additional needs\",function(){\r",
+									"    pm.expect(typeof JSON.parse(responseBody).additionalneeds).to.be.equal(\"string\")\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "token={{token}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW46cGFzc3dvcmQxMjM=",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\" : \"{{First_Name}}\",\r\n    \"lastname\" : \"{{Last_Name}}\",\r\n    \"totalprice\" : {{Total_Price}},\r\n    \"depositpaid\" : {{Depositpad}},\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"{{CheckIn}}\",\r\n        \"checkout\" : \"{{CheckOut}}\"\r\n    },\r\n    \"additionalneeds\" : \"{{Additional_Needs}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Base_Url}}/booking/{{bookingId}}",
+							"host": [
+								"{{Base_Url}}"
+							],
+							"path": [
+								"booking",
+								"{{bookingId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Partial Update Booking",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"// Verify the API response status code, request method, and response format.\r",
+									"\r",
+									"// Check if the API response status code is 200 OK.\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Check that the request method is POST.\r",
+									"pm.test(\"Request method should be PATCH\", function () {\r",
+									"    const actualMethod = pm.request.method;\r",
+									"    pm.expect(actualMethod).to.eql(\"PATCH\");\r",
+									"});\r",
+									"\r",
+									"// Check that the response is in JSON format.\r",
+									"pm.test(\"Response should be in JSON format\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// Check that value of any field is correct as random generated\r",
+									"\r",
+									"var fname = pm.collectionVariables.get(\"First_Name\");\r",
+									"pm.test(\"Booking /Update Booking Request --> Check value of firstname\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).firstname).to.be.equal(fname)\r",
+									"});\r",
+									"\r",
+									"var lname = pm.collectionVariables.get(\"Last_Name\");\r",
+									"pm.test(\"Booking /Update Booking Request --> Check value of lastname\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).lastname).to.be.equal(lname)\r",
+									"});\r",
+									"\r",
+									"var TPrice = pm.collectionVariables.get(\"Total_Price\");\r",
+									"pm.test(\"Booking /Update Booking Request --> Check value of totalprice\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).totalprice).to.be.equal(TPrice)\r",
+									"});\r",
+									"\r",
+									"var Deposit = pm.collectionVariables.get(\"Depositpad\");\r",
+									"pm.test(\"Booking /Update Booking Request --> Check value of depositpaid\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).depositpaid).to.be.equal(Deposit)\r",
+									"});\r",
+									"\r",
+									"var CIn = pm.collectionVariables.get(\"CheckIn\");\r",
+									"pm.test(\"Booking /Update Booking Request --> Check value of checkin\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).bookingdates.checkin).to.be.equal(CIn)\r",
+									"});\r",
+									"\r",
+									"var COut = pm.collectionVariables.get(\"CheckOut\");\r",
+									"pm.test(\"Booking /Update Booking Request --> Check value of checkout\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).bookingdates.checkout).to.be.equal(COut)\r",
+									"});\r",
+									"\r",
+									"var Needs = pm.collectionVariables.get(\"Additional_Needs\");\r",
+									"pm.test(\"Booking /Update Booking Request --> Check value of additionalneeds\",function(){\r",
+									"    pm.expect(JSON.parse(responseBody).additionalneeds).to.be.equal(Needs)\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"//Verify that data type of any fields is correct\r",
+									"pm.test(\"Booking /Update Booking Request --> Check that data type of firstname\",function(){\r",
+									"    pm.expect(typeof JSON.parse(responseBody).firstname).to.be.equal(\"string\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Booking /Update Booking Request --> Check that data type of lastname\",function(){\r",
+									"    pm.expect(typeof JSON.parse(responseBody).lastname).to.be.equal(\"string\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Booking /Update Booking Request --> Check that data type of totalprice\",function(){\r",
+									"    pm.expect(typeof JSON.parse(responseBody).totalprice).to.be.equal(\"number\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Booking /Update Booking Request --> Check that data type of depositpaid\",function(){\r",
+									"    pm.expect(typeof JSON.parse(responseBody).depositpaid).to.be.equal(\"boolean\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Booking /Update Booking Request --> Check that data type of checkin\",function(){\r",
+									"    pm.expect(typeof JSON.parse(responseBody).bookingdates.checkin).to.be.equal(\"string\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Booking /Update Booking Request --> Check that data type of checkout\",function(){\r",
+									"    pm.expect(typeof JSON.parse(responseBody).bookingdates.checkout).to.be.equal(\"string\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Booking /Update Booking Request --> Check that data type of additional needs\",function(){\r",
+									"    pm.expect(typeof JSON.parse(responseBody).additionalneeds).to.be.equal(\"string\")\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Method To create Random First Name\r",
+									"function getRandomFirstName() {\r",
+									"  var firstNames = [\"phonix\", \"Chris\", \"Matt\", \"Evans\", \"Paige\", \"Lita\", \"Daniel\", \"Payet\", \"Marry\", \"Jon\"];\r",
+									"  var randomIndex = Math.floor(Math.random() * firstNames.length);\r",
+									"  return firstNames[randomIndex];\r",
+									"}\r",
+									"pm.collectionVariables.set(\"First_Name\", getRandomFirstName());\r",
+									"\r",
+									"// Method To create Random Last Name\r",
+									"function getRandomLastName() {\r",
+									"  var lastNames = [\"Lust\", \"Henry\", \"Hugh\", \"Figo\", \"Ramos\", \"Xavi\", \"daren\", \"Luis\", \"Fisk\", \"Berthnal\"];\r",
+									"  var randomIndex = Math.floor(Math.random() * lastNames.length);\r",
+									"  return lastNames[randomIndex];\r",
+									"}\r",
+									"pm.collectionVariables.set(\"Last_Name\", getRandomLastName());\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "token={{token}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW46cGFzc3dvcmQxMjM=",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\" : \"{{First_Name}}\",\r\n    \"lastname\" : \"{{Last_Name}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Base_Url}}/booking/{{bookingId}}",
+							"host": [
+								"{{Base_Url}}"
+							],
+							"path": [
+								"booking",
+								"{{bookingId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Booking ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"// Check the API response status code, request method.\r",
+									"\r",
+									"\r",
+									"// Check if the API response status code is 201 OK.\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"// Check that the request method is DELETE.\r",
+									"pm.test(\"Request method should be DELETE\", function () {\r",
+									"    const actualMethod = pm.request.method;\r",
+									"    pm.expect(actualMethod).to.eql(\"DELETE\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Booking /Delete Booking Request --> check that Response should be in JSON format\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"text/plain; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "token={{token}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW46cGFzc3dvcmQxMjM=",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Base_Url}}/booking/{{bookingId}}",
+							"host": [
+								"{{Base_Url}}"
+							],
+							"path": [
+								"booking",
+								"{{bookingId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Create Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"// Make a collection variable for token to use in next requests\r",
+									"pm.collectionVariables.set(\"token\", JSON.parse(responseBody).token);\r",
+									"\r",
+									"\r",
+									"// Check that the response status code is 200 OK\r",
+									"pm.test(\"Auth Request --> Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Check that the response contains the token successfully\r",
+									"pm.test(\"Auth Request --> Check that response body contains token\", function () {\r",
+									"    pm.expect(JSON.parse(responseBody)).to.have.property(\"token\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// Check that the response is in JSON format\r",
+									"pm.test(\"Auth Request --> Response should be in JSON format\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"admin\",\r\n    \"password\" : \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Base_Url}}/auth",
+							"host": [
+								"{{Base_Url}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ping",
+			"item": [
+				{
+					"name": "HealthCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response Body is matching the string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Created\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"// Verify that the request method is GET.\r",
+									"pm.test(\"Verify request method to be GET\", function () {\r",
+									"    const actualMethod = pm.request.method;\r",
+									"    pm.expect(actualMethod).to.eql(\"GET\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Base_Url}}/ping",
+							"host": [
+								"{{Base_Url}}"
+							],
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.test(\"Check that Response time is less than 3 seconds\", function () {\r",
+					"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+					"});\r",
+					"\r",
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "First_Name",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Last_Name",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Total_Price",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Depositpad",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "CheckIn",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "CheckOut",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Additional_Needs",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "counter ",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
