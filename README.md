@@ -33,23 +33,16 @@ The RESTful Booker API is a web service designed for booking scenarios, and this
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Ola-Mohamed/Postman_project_RESTFUL_Booker.git
+   git clone https://github.com/AliAhmed3/Restful_Booker_Postman.git
    ```
 
 2. Import the Postman collection and environment from the `/Postman` folder into your Postman application.
 
-3. Run the collection manually in Postman or via **Newman** for automation:
+3. Run the collection manually in Postman or by **Newman** for automation:
    ```bash
-   newman run Restful_Booker_Collection.json -e Restful_Booker_Environment.json
+   newman run Restful-booker.postman_collection.json -e Restful-booker.postman_environment.json
    ```
+   you can also add: -r htmlextra at the end of the previous command to generate a HTML reporter which enable users to view better custom templates and provide an Interactive Report.
 
-## Next Steps
 
-- Integrate this testing suite with a CI/CD pipeline for automated test execution.
-- Expand test cases to cover edge cases and additional scenarios.
-  
-## Contributions
-
-Feel free to contribute to this project by creating pull requests, submitting issues, or suggesting enhancements.
-
----
+------------
